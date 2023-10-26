@@ -4,5 +4,11 @@
 
 html, body{
     overflow-x: hidden;
-    color: white
+    color: #F1F2FF;
+}
+.bg-home{
+    background: url(./assets/Images/bghome.svg);
+    background-size: cover;
+    background-position: center;
+
 }

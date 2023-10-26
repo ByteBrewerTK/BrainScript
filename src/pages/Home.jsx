@@ -4,6 +4,10 @@ import HighlitedText from "../components/core/Home/HighlitedText";
 import CTAButton from "../components/core/Home/CTAButton";
 import Banner from "../assets/videos/banner.mp4"
 import CodeBlock from "../components/core/Home/CodeBlock";
+import Catalogs from "../components/core/Home/Catalogs";
+import TimeLineSec from "../components/core/Home/TimeLineSec";
+import MoreCourseDetails from "../components/core/Home/MoreCourseDetails";
+import BecomeInstructor from "../components/core/Home/BecomeInstructor";
 
 export default function Home() {
 
@@ -11,16 +15,18 @@ export default function Home() {
         
     
     return (
-        <main className="w-full p-4">
-            {/* <h2 className="font-bold bg-pink-5">This is Homepage</h2> */}
+        <main className="w-full flex flex-col items-center">
 
-            <Link to={'/signup'} className="flex items-center border-b border-richblack-400 rounded-full py-2 px-4 bg-richblack-700 text-richblack-200 gap-2 w-max transition-all duration-200">
-                <span>Become an Instructor</span>
-                <FaArrowRight/>
-            </Link>
+            <section className="w-11/12 py-4">
 
-            <section>
-                <h2 className="text-[1.7rem] font-bold mt-6">
+                <Link to={'/signup'} className="flex items-center border-b border-richblack-400 rounded-full py-2 px-4 bg-richblack-700 text-richblack-200 gap-2 w-max transition-all duration-200">
+
+                    <span>Become an Instructor</span>
+                    <FaArrowRight/>
+
+                </Link>
+
+                <h2 className="text-[1.75rem] font-bold mt-6">
                     Empower Your Future with 
                     <HighlitedText text = {'Coding Skills'}/>
                 </h2>
@@ -54,9 +60,11 @@ export default function Home() {
                     loop
                     />
                 </div>
+            </section>
 
-                <CodeBlock 
-                    position={'flex-col md:flex-row'}
+            {/* Section Codeblock */}
+            <CodeBlock 
+                position={'flex-col md:flex-row'}
                     codeblock={codeblock}
                     ctaButton1={
                         {
@@ -73,16 +81,16 @@ export default function Home() {
                         }
                     }
                     heading={
-                        <h2 className="text-[1.7rem] mt-6 mb-2 font-bold">
+                        <h2 className="text-[1.75rem] mt-6 mb-2 font-bold">
                             Unlock your <HighlitedText text={'coding potential'}/> with our online courses.
                         </h2>
                     }
                     subHeading={
                         "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
                     }
-                    />
+                />
 
-                <CodeBlock 
+            <CodeBlock 
                     position={'flex-col md:flex-row-reverse'}
                     codeblock={codeblock}
                     ctaButton1={
@@ -100,17 +108,24 @@ export default function Home() {
                         }
                     }
                     heading={
-                        <h2 className="text-[1.7rem] mt-6 mb-2 font-bold w-1/2">
+                        <h2 className="text-[1.75rem] mt-6 mb-2 font-bold w-1/2">
                             Start <HighlitedText text={'coding in seconds'}/> 
                         </h2>
                     }
                     subHeading={
                         "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
                     }
-                    />
+                />
                                     
-            </section>
+            {/* Section Course details */}
 
+            <Catalogs/>
+            
+            <TimeLineSec/>
+
+            <MoreCourseDetails/>
+
+            <BecomeInstructor/>
             
         </main>
     );

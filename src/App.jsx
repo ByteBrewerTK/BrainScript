@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 
 export default function App() {
   return (
-    <section className="w-screen min-h-screen bg-richblack-900">
+    <section className="w-screen min-h-screen bg-richblack-900 flex justify-center">
       <Routes>
         <Route path="/" element={<Home/>}/>
       </Routes>

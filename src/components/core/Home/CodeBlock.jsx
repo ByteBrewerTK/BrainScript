@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import CTAButton from "./CTAButton";
 import {TypeAnimation} from 'react-type-animation';
 
 export default function CodeBlock({position,heading, subHeading,codeblock, ctaButton1, ctaButton2 }) {
     return (
-        <section className={`flex ${position} gap-4 w-full`}>
+        <section className={`flex ${position} w-11/12 gap-4`}>
             <div>
 
                 {heading}
@@ -13,14 +14,19 @@ export default function CodeBlock({position,heading, subHeading,codeblock, ctaBu
 
                 <div className="flex gap-4 w-full justify-between mx-auto mt-6">
                     <CTAButton linkto={ctaButton1.linkto} active={ctaButton1.active}>
-                        {ctaButton1.children}
+                        <div className="px-4">
+                            {ctaButton1.children}
+                        </div>
                     </CTAButton>
 
                     <CTAButton linkto={ctaButton1.linkto} active={ctaButton2.active}>
-                        {ctaButton2.children}
+                        <div className="px-4">
+                            {ctaButton2.children}
+                        </div>
                     </CTAButton>
                 </div>
             </div>
+
             <div className={`flex flex-row gap-4 text-[.8rem] border border-richblack-600 p-2`}>
 
                 <div>
@@ -49,6 +55,7 @@ export default function CodeBlock({position,heading, subHeading,codeblock, ctaBu
                 </code>
 
             </div>
+            
         </section>
     )
 }
