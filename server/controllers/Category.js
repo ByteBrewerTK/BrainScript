@@ -76,12 +76,12 @@ exports.categoryPageDetails = async (req, res) => {
         .exec();
 
         return res.status(200).json({
-            success : true,
-            data : {
-                selectedCategory,
-                di
-            }
-        });
+			success: true,
+			data: {
+				selectedCategory,
+				differentCategories,
+			},
+		});
 
     }catch(error){
         console.log(error);

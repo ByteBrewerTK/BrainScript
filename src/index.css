@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body{
-    overflow-x: hidden;
-    color: #F1F2FF;
+html,
+body {
+	overflow-x: hidden;
+	color: #f1f2ff;
 }
-.bg-home{
-    background: url(./assets/Images/bghome.svg);
-    background-size: cover;
-    background-position: center;
-
+.bg-home {
+	background: url(./assets/Images/bghome.svg);
+	background-position: center;
 }
