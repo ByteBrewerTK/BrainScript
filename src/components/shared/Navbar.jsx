@@ -5,11 +5,12 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { IoMdLogOut } from "react-icons/io";
 import { RiMenu3Line } from "react-icons/ri";
+import { FaXmark} from "react-icons/fa6";
 import { useState } from "react";
 import NavMenu from "../core/navbar/NavMenu";
 import { useRef } from "react";
 import { useEffect } from "react";
-import SideMenu from "../core/navbar/SideMenu"
+import SideMenu from "../core/navbar/SideMenu";
 
 export default function Navbar() {
 	const [isProfileMenuActive, setIsProfileMenuActive] = useState(false);
@@ -26,6 +27,8 @@ export default function Navbar() {
 			if (!menuRef.current.contains(e.target)) {
 				// console.log("Not ref btn", e.target);
 				setIsProfileMenuActive(false);
+				setIsNaveMenuActive(false);
+				
 			}
 		};
 		document.addEventListener("mousedown", handler);
@@ -44,10 +47,14 @@ export default function Navbar() {
 
 				<NavMenu setIsProfileMenuActive={setIsProfileMenuActive} />
 
-				<SideMenu
-					setIsNaveMenuActive={setIsNaveMenuActive}
-					isNavMenuActive={isNavMenuActive}
-				/>
+				<aside
+					ref={menuRef}
+					className={`${
+						!isNavMenuActive ? "hidden" : ""
+					} absolute flex gap-4 right-0 flex-col top-14 bg-richblack-600 p-4 rounded z-10`}
+				>
+					<SideMenu />
+				</aside>
 
 				{token === null && (
 					<div className="flex gap-4">
@@ -93,8 +100,13 @@ export default function Navbar() {
 							<img src={avatar} alt="avatar" />
 						</button>
 
-						<button className="text-2xl lg:text-3xl">
-							<RiMenu3Line />
+						<button
+							onClick={() =>
+								setIsNaveMenuActive(!isNavMenuActive)
+							}
+							className="text-2xl lg:text-3xl"
+						>
+							{isNavMenuActive ? <FaXmark /> : <RiMenu3Line />}
 						</button>
 
 						<div

@@ -4,29 +4,16 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import useCategoriesList from "../../../hooks/useCategoriesList";
-import { useRef } from "react";
-import { useEffect } from "react";
 
-export default function SideMenu({ setIsNaveMenuActive, isNavMenuActive }) {
+export default function SideMenu() {
 	const location = useLocation();
 	const { pathname } = location;
 	const [isCatalogExpand, setIsCatalogExpand] = useState(false);
 	const subLinks = useCategoriesList();
 	console.log("object");
-	const menuRef = useRef();
-
-	useEffect(() => {
-		let handler = (e) => {
-			if (!menuRef.current.contain(e.target)) {
-				setIsCatalogExpand;
-			}
-		};
-	});
 
 	return (
-		<aside
-			className={`absolute flex gap-4 right-0 flex-col top-14 bg-richblack-600 p-4 rounded z-10`}
-		>
+		<>
 			{NavbarLinks.map((element, index) =>
 				element.title === "Catalog" ? (
 					<div
@@ -75,6 +62,6 @@ export default function SideMenu({ setIsNaveMenuActive, isNavMenuActive }) {
 					</Link>
 				)
 			)}
-		</aside>
+		</>
 	);
 }
