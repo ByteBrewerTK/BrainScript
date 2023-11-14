@@ -6,6 +6,7 @@ html,
 body {
 	overflow-x: hidden;
 	color: #f1f2ff;
+	
 }
 .bg-home {
 	background: url(./assets/Images/bghome.svg);

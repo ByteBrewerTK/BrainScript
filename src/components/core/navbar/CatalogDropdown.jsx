@@ -9,7 +9,7 @@ export default function CatalogDropdown() {
 		<Fragment>
 			{subLinks.map((element) => (
 				<Link
-					to={"/catalog"}
+					to={`/${element.name.toLowerCase().replace(' ','-')}`}
 					key={element._id}
 					className="w-full p-2 text-xl rounded hover:bg-richblack-100"
 				>

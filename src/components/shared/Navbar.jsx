@@ -4,26 +4,50 @@ import { useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { IoMdLogOut } from "react-icons/io";
+import { RiMenu3Line } from "react-icons/ri";
 import { useState } from "react";
 import NavMenu from "../core/navbar/NavMenu";
+import { useRef } from "react";
+import { useEffect } from "react";
+import SideMenu from "../core/navbar/SideMenu"
 
 export default function Navbar() {
 	const [isProfileMenuActive, setIsProfileMenuActive] = useState(false);
 	const { totalItems } = useSelector((state) => state.cart);
 	const { token } = useSelector((state) => state.auth);
 	const { user } = useSelector((state) => state.user);
-	
-	const avatar = "https://api.dicebear.com/7.x/lorelei/svg?flip=false";
+	const [isNavMenuActive, setIsNaveMenuActive] = useState(false);
+	const menuRef = useRef();
 
+	const avatar = "https://api.dicebear.com/7.x/lorelei/svg?flip=false";
+	// console.log(menuRef);
+	useEffect(() => {
+		let handler = (e) => {
+			if (!menuRef.current.contains(e.target)) {
+				// console.log("Not ref btn", e.target);
+				setIsProfileMenuActive(false);
+			}
+		};
+		document.addEventListener("mousedown", handler);
+
+		return () => {
+			document.removeEventListener("mousedown", handler);
+		};
+	});
 
 	return (
 		<header className="w-screen border-b h-fit border-richblack-500">
-			<div className="flex items-center justify-between w-11/12 mx-auto lg:w-3/4 ">
-				<Link to={"/"} className="w-[120px] lg:w-[180px]">
+			<div className="relative flex items-center justify-between w-11/12 mx-auto lg:w-3/4 ">
+				<Link to={"/"} className="w-[120px] lg:w-[180px] select-none">
 					<img src={logo} alt="" />
 				</Link>
 
 				<NavMenu setIsProfileMenuActive={setIsProfileMenuActive} />
+
+				<SideMenu
+					setIsNaveMenuActive={setIsNaveMenuActive}
+					isNavMenuActive={isNavMenuActive}
+				/>
 
 				{token === null && (
 					<div className="flex gap-4">
@@ -60,22 +84,28 @@ export default function Navbar() {
 						)}
 						<button
 							onClick={() => {
-								setIsProfileMenuActive((prev) => !prev);
+								setIsProfileMenuActive(!isProfileMenuActive);
 							}}
 							title="Profile"
-							className="object-cover object-center w-8 border-2 rounded-full lg:w-12 aspect-square"
+							ref={menuRef}
+							className="object-cover object-center w-8 overflow-auto border-2 rounded-full lg:w-12 aspect-square"
 						>
 							<img src={avatar} alt="avatar" />
+						</button>
+
+						<button className="text-2xl lg:text-3xl">
+							<RiMenu3Line />
 						</button>
 
 						<div
 							className={`${
 								!isProfileMenuActive ? "hidden" : ""
-							} absolute p-2 translate-y-20 rounded bg-richblack-600`}
+							} absolute p-2 lg:translate-y-20 right-0 lg:right-auto top-14 lg:top-auto rounded bg-richblack-600 z-10`}
 						>
+							<span className="absolute w-4 mx-auto rotate-45 right-2 lg:left-0 lg:right-0 -z-10 -top-2 aspect-square bg-richblack-600"></span>
 							<Link
 								to={"/dashboard"}
-								className="flex items-center gap-2 p-1 rounded hover:bg-richblack-500"
+								className="z-10 flex items-center gap-2 p-1 rounded lg:hover:bg-richblack-500 active:bg-richblack-500"
 							>
 								<LuLayoutDashboard />
 								Dashboard
@@ -83,7 +113,7 @@ export default function Navbar() {
 
 							<Link
 								to={"signout"}
-								className="flex items-center gap-2 p-1 rounded hover:bg-richblack-500"
+								className="flex items-center gap-2 p-1 rounded lg:hover:bg-richblack-500 active:bg-richblack-500"
 							>
 								<IoMdLogOut />
 								Logout
